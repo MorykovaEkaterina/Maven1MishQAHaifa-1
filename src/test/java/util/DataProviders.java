@@ -26,6 +26,18 @@ public class DataProviders {
         in.close();
         return userData.iterator();
     }
+    @DataProvider
+    public static Iterator<Object[]> loginNegative() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(DataProviders.class.getResourceAsStream("/LoginNegative.data")));
+        List<Object[]> userData = new ArrayList<>();
+
+        for(String line = in.readLine(); line != null; line = in.readLine()) {
+            userData.add(line.split(";"));
+        }
+
+        in.close();
+        return userData.iterator();
+    }
 
     @DataProvider
     public static Iterator<Object[]> createNewAccountsWithDataProvider() throws IOException {

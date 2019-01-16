@@ -53,13 +53,13 @@ public class LoginPageTests extends TestBase {
 
     }
 
-    @Test
-    public void loginNegative(){
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "loginNegative")
+    public void loginNegative(String email, String password){
         homePage.waitUntilPageLoad()
                 .pressLoginButton();
         loginPage.waitUntilPageLoad()
-                .enterValueToFieldEmail("marrina@123.com")
-                .enterValueToFieldPassword("marina")
+                .enterValueToFieldEmail(email)
+                .enterValueToFieldPassword(password)
                 .pressLogInButton();
 
 
