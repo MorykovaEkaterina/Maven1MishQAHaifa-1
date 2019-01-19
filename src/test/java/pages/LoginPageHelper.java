@@ -54,4 +54,8 @@ public class LoginPageHelper extends PageBase {
     return alertText.getText();
 
     }
+    public LoginPageHelper pressCancelButton(){
+        cancelButton.click();
+        return this;
+    }
 }

@@ -56,14 +56,19 @@ public class LoginPageTests extends TestBase {
     @Test(dataProviderClass = DataProviders.class, dataProvider = "loginNegative")
     public void loginNegative(String email, String password){
         homePage.waitUntilPageLoad()
-                .pressLoginButton();
-        loginPage.waitUntilPageLoad()
-                .enterValueToFieldEmail(email)
+                .pressLoginButton()
+                .waitUntilPageLoad();
+        loginPage.enterValueToFieldEmail(email)
                 .enterValueToFieldPassword(password)
-                .pressLogInButton();
+                .pressLogInButton()
+                .waitUntilPageLoad();
+        Assert.assertEquals("Wrong authorization, login or password",loginPage.getAlertText());
+        loginPage.waitUntilPageLoad();
+        loginPage.pressCancelButton();
+        homePage.waitUntilPageLoad();
+        Assert.assertEquals(homePage.getHeader(), "Shabbat in the family circle");
 
 
-       Assert.assertEquals("Wrong authorization, login or password",
-               loginPage.getAlertText());
+
     }
 }
